@@ -8,13 +8,19 @@ Given /^the following movies exist:$/ do |table|
 end
 
 When /^(?:|I )go to (?:the )?(\w+) page for "(.*?)"$/ do |action, page_name|
-  movie_id = Movie.find_by_title(page_name).id
+  movie = Movie.find_by_title(page_name)
   case action
   when "edit"
-    visit edit_movie_path(movie_id)
+    # visit edit_movie_path(movie)
+    visit "/movies/#{movie.id}/edit"
   when "details"
-    visit movie_path(movie_id)
+    visit movie_path(movie)
   end
+end
+
+Then /^the director of "([^"]*)" should be "([^"]*)"$/ do |movie_name, director_name|
+  movie = Movie.find_by_name(movie_name)
+  movie.director.should == director_name
 end
 
 Given /^(?:|I )am on (?:the )?(\w+) page for "(.*?)"$/ do |action, page_name|
