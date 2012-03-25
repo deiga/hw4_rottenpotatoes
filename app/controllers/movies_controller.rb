@@ -60,7 +60,7 @@ class MoviesController < ApplicationController
 
   def with_same_director
     movie = Movie.find_by_id(params[:id])
-    if movie.director
+    unless movie.director.nil? or movie.director.empty?
       @movies = Movie.where(:director => movie.director)
     else
       flash[:warning] = "'#{movie.title}' has no director info"
