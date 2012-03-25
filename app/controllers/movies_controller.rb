@@ -60,8 +60,8 @@ class MoviesController < ApplicationController
 
   def with_same_director
     movie = Movie.find_by_id(params[:id])
-    if movie
-      @movies = Movie.find_by_director(movie.director)
+    if movie.director
+      @movies = Movie.where(:director => movie.director)
     else
       flash[:warning] = "'#{movie.title}' has no director info"
       redirect_to root_path
