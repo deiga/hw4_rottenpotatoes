@@ -14,7 +14,7 @@ module NavigationHelpers
     case page_name
 
     when /^the home\s?page$/
-      '/'
+      '/movies'
 
     when /^the Similar Movies page for "(.*?)"$/ 
       with_same_director_movie_path(Movie.find_by_title($1))
