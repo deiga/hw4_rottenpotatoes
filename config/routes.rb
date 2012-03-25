@@ -14,7 +14,7 @@ Rottenpotatoes::Application.routes.draw do
   #   resources :products
   resources :movies do 
     member do
-      get "find_with_director"
+      get "with_same_director"
     end
   end
   root :to => 'movies#index'
