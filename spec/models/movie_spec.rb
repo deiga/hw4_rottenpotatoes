@@ -9,6 +9,6 @@ describe Movie do
 
   describe "find with director" do
     Movie.create!(:title => "Star Wars: A New Hope", :rating => "PG", :release_date => "1977-05-25", :director => "George Lucas")
-    Movie.where(:director => "George Lucas").count.should == 1
+    Movie.find_by_director("George Lucas").should_not be_nil
   end
 end
