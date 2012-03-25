@@ -59,7 +59,13 @@ class MoviesController < ApplicationController
   end
 
   def find_with_director
-    @movies = Movie.find_by_director(Movie.find_by_id(params[:id]).director)
+    movie = Movie.find_by_id(params[:id])
+    if movie
+      @movies = Movie.find_by_director(Movie.find_by_id(params[:id]).director)
+    else
+      flash[:warning] = "'#{movie.title}' has no director info"
+      redirect_to root_path
+    end
   end
 
 end
